@@ -13,15 +13,12 @@ import (
 var notesAvailable = []int{200, 100, 50, 20, 10, 5}
 
 func main() {
-	//Lendo a quantidade de saque
 	inputReader := bufio.NewReader(os.Stdin)
 	fmt.Print("Digite o valor de saque: ")
 	input, exception := inputReader.ReadString('\n')
 
-	//Função para retornar possiveis erros
 	checkIfThereIsAnError(exception)
 
-	//Formatando e convertendo a quantidade de saque
 	input = strings.TrimSpace(input)
 	amountValue, exception := strconv.Atoi(input)
 
@@ -48,7 +45,7 @@ func main() {
 	}
 }
 
-// Função responsavel para calcular o minimo de cada nota disponivel
+// Função reponsavel para calcular o minimo de cada nota disponivel
 func calcNotes(amountParam int) (map[int]int, bool) {
 
 	noteCount := make(map[int]int)
@@ -61,7 +58,6 @@ func calcNotes(amountParam int) (map[int]int, bool) {
 		}
 	}
 
-	//Se for diferente de 0 signifca que sobrou algum valor, estão as notas disponiveis não foram o suficiente.
 	if amount != 0 {
 		return nil, false
 	}
@@ -69,7 +65,6 @@ func calcNotes(amountParam int) (map[int]int, bool) {
 	return noteCount, true
 }
 
-// Função para retornar possiveis erros
 func checkIfThereIsAnError(err error) {
 	if err != nil {
 		fmt.Println("Não foi possível ler o valor informado:", err)
